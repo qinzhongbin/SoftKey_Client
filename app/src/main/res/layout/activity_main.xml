@@ -1,18 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            app:title="@string/app_name"
+            app:menu="@menu/main"
+            android:id="@+id/tb"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bindService"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="bindService"
+                android:text="绑定服务" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/unbindService"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="unbindService"
+                android:text="解绑服务" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/setSessionKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setSessionKey"
+            android:text="设置会话密钥" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/enumDev"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="enumDev"
+                android:text="枚举设备"
+                app:layout_constraintEnd_toStartOf="@id/freeDevs"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/freeDevs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="freeDevs"
+                android:text="释放设备"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/enumDev"
+                app:layout_constraintTop_toTopOf="@id/enumDev" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/loginDev"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="loginDev"
+                android:text="登录设备"
+                app:layout_constraintEnd_toStartOf="@id/logoutDev"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/enumDev" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/logoutDev"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="logoutDev"
+                android:text="登出设备"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/loginDev"
+                app:layout_constraintTop_toTopOf="@id/loginDev" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/initResource"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="initResource"
+                android:text="初始化资源"
+                app:layout_constraintEnd_toStartOf="@id/updateResource"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/loginDev" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/updateResource"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="updateResource"
+                android:text="更新资源"
+                app:layout_constraintEnd_toStartOf="@id/destroyResource"
+                app:layout_constraintStart_toEndOf="@id/initResource"
+                app:layout_constraintTop_toTopOf="@id/initResource" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/destroyResource"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="destroyResource"
+                android:text="销毁资源"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/updateResource"
+                app:layout_constraintTop_toTopOf="@id/updateResource" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/getDevId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="getDeviceId"
+                android:text="获取设备ID"
+                app:layout_constraintEnd_toStartOf="@id/getAppList"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/initResource" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/getAppList"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="getAppList"
+                android:text="获取应用列表"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/getDevId"
+                app:layout_constraintTop_toTopOf="@id/getDevId" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/queryKeyLength"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="queryKeyLength"
+                android:text="查询密钥余量"
+                app:layout_constraintEnd_toStartOf="@id/chargeKey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/getDevId" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/chargeKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="chargeKey"
+                android:text="充注密钥"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/queryKeyLength"
+                app:layout_constraintTop_toTopOf="@id/queryKeyLength" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/CTSNegotiate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="CTSNegotiate"
+                android:text="CTS协商密钥"
+                app:layout_constraintEnd_toStartOf="@id/negoOLBizKey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/queryKeyLength" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/negoOLBizKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="negoOLBizKey"
+                android:text="协商在线业务密钥"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/CTSNegotiate"
+                app:layout_constraintTop_toTopOf="@id/CTSNegotiate" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/getKeyHandle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="getKeyHandle"
+                android:text="获取密钥句柄"
+                app:layout_constraintEnd_toStartOf="@id/freeKeyHandle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/CTSNegotiate" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/freeKeyHandle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="freeKeyHandle"
+                android:text="释放密钥句柄"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/getKeyHandle"
+                app:layout_constraintTop_toTopOf="@id/getKeyHandle" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/encrypt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="encrypt"
+                android:text="加密"
+                app:layout_constraintEnd_toStartOf="@id/decrypt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/getKeyHandle" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/decrypt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="decrypt"
+                android:text="解密"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/encrypt"
+                app:layout_constraintTop_toTopOf="@id/encrypt" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/getSoftKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="getSoftKey"
+                android:text="获取软密钥"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/encrypt" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.core.widget.NestedScrollView>
